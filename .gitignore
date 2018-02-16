@@ -2,6 +2,7 @@
 *.log
 *.swp
 .DS_Store
+.python-version
 __MACOSX
 __pycache__
 03-wordemb/*.txt
