@@ -73,24 +73,24 @@ def calc_predict_and_activations(wids, tag, words):
     pool_out = dy.rectify(pool_out)
 
     scores = (W_sm_express * pool_out + b_sm_express).npvalue()
-    print '%d ||| %s' % (tag, ' '.join(words))
+    print('%d ||| %s' % (tag, ' '.join(words)))
     predict = np.argmax(scores)
-    print display_activations(words, activations)
-    print 'scores=%s, predict: %d' % (scores, predict)
+    print(display_activations(words, activations))
+    print('scores=%s, predict: %d' % (scores, predict))
     features = pool_out.npvalue()
     W = W_sm_express.npvalue()
     bias = b_sm_express.npvalue()
-    print '  bias=%s' % bias
+    print('  bias=%s' % bias)
     contributions = W * features
-    print ' very bad (%.4f): %s' % (scores[0], contributions[0])
-    print '      bad (%.4f): %s' % (scores[1], contributions[1])
-    print '  neutral (%.4f): %s' % (scores[2], contributions[2])
-    print '     good (%.4f): %s' % (scores[3], contributions[3])
-    print 'very good (%.4f): %s' % (scores[4], contributions[4])
+    print(' very bad (%.4f): %s' % (scores[0], contributions[0]))
+    print('      bad (%.4f): %s' % (scores[1], contributions[1]))
+    print('  neutral (%.4f): %s' % (scores[2], contributions[2]))
+    print('     good (%.4f): %s' % (scores[3], contributions[3]))
+    print('very good (%.4f): %s' % (scores[4], contributions[4]))
 
 
 def display_activations(words, activations):
-    pad_begin = (WIN_SIZE - 1) / 2
+    pad_begin = (WIN_SIZE - 1) // 2
     pad_end = WIN_SIZE - 1 - pad_begin
     words_padded = ['pad' for i in range(pad_begin)] + words + ['pad' for i in range(pad_end)]
 
@@ -129,4 +129,4 @@ for ITER in range(10):
 
 for words, wids, tag in dev:
     calc_predict_and_activations(wids, tag, words)
-    raw_input()
+    input()
